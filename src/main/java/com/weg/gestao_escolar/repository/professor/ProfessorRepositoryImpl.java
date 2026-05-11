@@ -3,6 +3,7 @@ package com.weg.gestao_escolar.repository.professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,8 @@ import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Professor;
 
 @Repository
-public class ProfessorRepositoryImpl {
-    public static Professor cadastrarProfessor(Professor professor) throws SQLException{
+public class ProfessorRepositoryImpl implements ProfessorRepository {
+    public Professor cadastrarProfessor(Professor professor) throws SQLException{
         String command = """
                 INSERT INTO professor
                 (nome, email, disciplina)
@@ -36,5 +37,36 @@ public class ProfessorRepositoryImpl {
                 }
             }
         throw new RuntimeException("Erro ao criar um novo Professor!");
+    }
+
+    @Override
+    public com.weg.gestao_escolar.controller.Professor cadastrarProfessor(
+            com.weg.gestao_escolar.controller.Professor professor) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'cadastrarProfessor'");
+    }
+
+    @Override
+    public com.weg.gestao_escolar.controller.Professor buscarProfessor(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarProfessor'");
+    }
+
+    @Override
+    public List<com.weg.gestao_escolar.controller.Professor> buscarTodosProfessores() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTodosProfessores'");
+    }
+
+    @Override
+    public void atualizarProfessor(com.weg.gestao_escolar.controller.Professor professor) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizarProfessor'");
+    }
+
+    @Override
+    public void deletarProfessor(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletarProfessor'");
     }
 }

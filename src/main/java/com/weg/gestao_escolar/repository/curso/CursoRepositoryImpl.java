@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,8 @@ import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Curso;
 
 @Repository
-public class CursoRepositoryImpl {
-    public static Curso cadastrarCurso(Curso curso) throws SQLException {
+public class CursoRepositoryImpl implements CursoRepository {
+    public Curso cadastrarCurso(Curso curso) throws SQLException {
         String command = """
                 INSERT INTO curso
                 (nome, codigo)
@@ -35,5 +36,29 @@ public class CursoRepositoryImpl {
                 }
             }
         throw new RuntimeException("Erro ao criar um novo curso!");
+    }
+
+    @Override
+    public Curso buscarCurso(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarCurso'");
+    }
+
+    @Override
+    public List<Curso> buscarTodosCursos() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTodosCursos'");
+    }
+
+    @Override
+    public void atualizarCurso(Curso curso) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizarCurso'");
+    }
+
+    @Override
+    public void deletarCurso(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletarCurso'");
     }
 }

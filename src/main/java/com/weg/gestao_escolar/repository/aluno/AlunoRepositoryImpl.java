@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,8 @@ import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Aluno;
 
 @Repository
-public class AlunoRepositoryImpl {
-    public static Aluno cadastrarAluno(Aluno aluno) throws SQLException{
+public class AlunoRepositoryImpl implements AlunoRepository {
+    public Aluno cadastrarAluno(Aluno aluno) throws SQLException{
         String command = """
                 INSERT INTO aluno
                 (nome, email, matricula, data_nascimento)
@@ -36,5 +37,29 @@ public class AlunoRepositoryImpl {
                 }
             }
         throw new RuntimeException("Erro ao cadastrar um novo aluno!");
+    }
+
+    @Override
+    public Aluno buscarAluno(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarALuno'");
+    }
+
+    @Override
+    public List<Aluno> buscarTodosAlunos() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTodosAlunos'");
+    }
+
+    @Override
+    public void atualizarAluno(Aluno aluno) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizarAluno'");
+    }
+
+    @Override
+    public void deletarAluno(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletarAluno'");
     }
 }

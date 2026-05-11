@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,8 @@ import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Turma;
 
 @Repository
-public class TurmaRepositoryImpl {
-    public static Turma cadastrarTurma(Turma turma) throws SQLException {
+public class TurmaRepositoryImpl implements TurmaRepository {
+    public Turma cadastrarTurma(Turma turma) throws SQLException {
         String command = """
                 INSERT INTO turma
                 (nome, curso_id, professor_id)
@@ -36,5 +37,29 @@ public class TurmaRepositoryImpl {
                 }
         }
         throw new RuntimeException("Erro ao cadastrar uma turma nova!");
+    }
+
+    @Override
+    public Turma buscarTurma(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTurma'");
+    }
+
+    @Override
+    public List<Turma> buscarTodasTurmas() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTodasTurmas'");
+    }
+
+    @Override
+    public void atualizarTurma(Turma turma) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizarTurma'");
+    }
+
+    @Override
+    public void deletarTurma(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletarTurma'");
     }
 }

@@ -1,6 +1,7 @@
 package com.weg.gestao_escolar.repository.aula;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Repository
-public class AulaRepositoryImpl {
-    public static Aula cadastrarAula(Aula aula) throws SQLException {
+public class AulaRepositoryImpl implements AulaRepository {
+    public Aula cadastrarAula(Aula aula) throws SQLException {
         String command = """
                 INSERT INTO aula
                 (turma_id, data_hora, assunto)
@@ -36,5 +37,29 @@ public class AulaRepositoryImpl {
                 }
             }
         throw new RuntimeException("Erro ao criar uma nova aula!");
+    }
+
+    @Override
+    public Aula buscarAula(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarAula'");
+    }
+
+    @Override
+    public List<Aula> buscarTodasAulas() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarTodasAulas'");
+    }
+
+    @Override
+    public void atualizarAula(Aula aula) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizarAula'");
+    }
+
+    @Override
+    public void deletarAula(Long id) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletarAula'");
     }
 }
