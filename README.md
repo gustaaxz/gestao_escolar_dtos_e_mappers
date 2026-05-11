@@ -20,12 +20,12 @@ O projeto utiliza DTOs para separar as entidades de persistência dos objetos de
 
 ### Mapeamento de DTOs
 
-| Entidade | DTO de Requisição | DTO de Resposta |
+| Entidade | DTO Requisição (Dados enviados para a API) | DTO Resposta (Dados retornados pela API) |
 | :--- | :--- | :--- |
 | **Aluno** | `nome`, `email`, `matricula`, `dataNascimento` | `id`, `nome`, `email`, `matricula`, `dataNascimento` |
 | **Professor** | `nome`, `email`, `disciplina` | `id`, `nome`, `email`, `disciplina` |
 | **Curso** | `nome`, `codigo`, `listaProfessorIds` | `id`, `nome`, `codigo`, `listaProfessores` (nomes) |
-| **Turma** | `nome`, `cursoId`, `professorId`, `listaAlunoIds` | `id`, `nomeTurma`, `nomeCurso`, `nomeProfessor`, `listaAlunos` (nomes) |
+| **Turma** | `nome`, `cursoId`, `professorId`, `listaAlunoIds` | `id`, `nome`, `nomeCurso`, `nomeProfessor`, `listaAlunos` (nomes) |
 | **Aula** | `turmaId`, `dataHora`, `assunto` | `id`, `nomeTurma`, `dataHora`, `assunto` |
 | **Nota** | `alunoId`, `aulaId`, `valor` | `id`, `alunoNome`, `aulaAssunto`, `valor` |
 
