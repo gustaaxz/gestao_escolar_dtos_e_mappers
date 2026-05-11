@@ -20,8 +20,8 @@ public class NotaMapper {
     ){
         return new NotaRespostaDTO(
                 nota.getId(),
-                nota.getAluno_id(),
-                nota.getAula_id(),
+                String.valueOf(nota.getAluno_id()),
+                String.valueOf(nota.getAula_id()),
                 nota.getValor()
         );
     }

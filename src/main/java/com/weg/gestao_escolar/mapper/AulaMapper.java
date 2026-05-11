@@ -20,7 +20,7 @@ public class AulaMapper {
     ){
         return new AulaRespostaDTO(
                 aula.getId(),
-                aula.getTurma_id(),
+                String.valueOf(aula.getTurma_id()),
                 aula.getData_hora(),
                 aula.getAssunto()
         );

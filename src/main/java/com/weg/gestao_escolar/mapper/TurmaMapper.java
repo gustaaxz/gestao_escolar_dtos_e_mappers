@@ -20,9 +20,10 @@ public class TurmaMapper {
     ){
         return new TurmaRespostaDTO(
                 turma.getId(),
-                turma.getCurso_id(),
-                turma.getProfessor_id(),
-                turma.getNome()
+                turma.getNome(),
+                String.valueOf(turma.getCurso_id()),
+                String.valueOf(turma.getProfessor_id()),
+                ""
         );
     }
 }
