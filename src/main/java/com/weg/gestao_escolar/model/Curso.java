@@ -13,9 +13,11 @@ public class Curso {
         this.nome = nome;
         this.codigo = codigo;
     }
+    
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
