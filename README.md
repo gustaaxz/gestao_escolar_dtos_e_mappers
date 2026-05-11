@@ -62,3 +62,7 @@ O projeto tem como objetivo fixar os seguintes conceitos:
 ## Script SQL (Tabelas e Dados Iniciais)
 
 O arquivo com os scripts de criação de tabelas (`CREATE TABLE`) e inserção de dados (`INSERT INTO`) está disponível no projeto para facilitar a configuração inicial do banco de dados relacional.
+
+## Atividade
+
+[📄 Visualizar Atividade DTO.pdf](Atividade%20DTO.pdf)
