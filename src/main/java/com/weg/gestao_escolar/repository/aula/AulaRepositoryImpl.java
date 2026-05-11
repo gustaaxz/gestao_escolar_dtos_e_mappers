@@ -2,12 +2,15 @@ package com.weg.gestao_escolar.repository.aula;
 
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Aula;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Repository
 public class AulaRepositoryImpl {
     public static Aula cadastrarAula(Aula aula) throws SQLException {
         String command = """

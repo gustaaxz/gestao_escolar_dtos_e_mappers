@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Turma;
 
+@Repository
 public class TurmaRepositoryImpl {
     public static Turma cadastrarTurma(Turma turma) throws SQLException {
         String command = """

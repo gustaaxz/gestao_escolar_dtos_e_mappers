@@ -4,10 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Professor;
 
+@Repository
 public class ProfessorRepositoryImpl {
     public static Professor cadastrarProfessor(Professor professor) throws SQLException{
         String command = """

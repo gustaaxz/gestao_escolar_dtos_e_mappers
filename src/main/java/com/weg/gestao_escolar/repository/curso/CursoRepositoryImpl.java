@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.springframework.stereotype.Repository;
+
 import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Curso;
 
+@Repository
 public class CursoRepositoryImpl {
     public static Curso cadastrarCurso(Curso curso) throws SQLException {
         String command = """
