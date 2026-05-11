@@ -1,26 +1,25 @@
 package com.weg.gestao_escolar.mapper;
 
+import com.weg.gestao_escolar.dto.turma_aluno.Turma_AlunoRequisicaoDTO;
+import com.weg.gestao_escolar.dto.turma_aluno.Turma_AlunoRespostaDTO;
 import com.weg.gestao_escolar.model.Turma_Aluno;
 
 public class Turma_AlunoMapper {
     public Turma_Aluno paraEntidade(
-            NotaRequisicaoDTO requisicaoDTO
+            Turma_AlunoRequisicaoDTO requisicaoDTO
     ){
-        return new Nota(
-                requisicaoDTO.aluno_id(),
-                requisicaoDTO.aula_id(),
-                requisicaoDTO.valor()
+        return new Turma_Aluno(
+                requisicaoDTO.turma_id(),
+                requisicaoDTO.aluno_id()
         );
     }
 
-    public NotaRespostaDTO paraRespostaDTO(
-            Nota nota
+    public Turma_AlunoRespostaDTO paraRespostaDTO(
+            Turma_Aluno turma_aluno
     ){
-        return new NotaRespostaDTO(
-                nota.getId(),
-                nota.getAluno_id(),
-                nota.getAula_id(),
-                nota.getValor()
+        return new Turma_AlunoRespostaDTO(
+                turma_aluno.getTurma_id(),
+                turma_aluno.getAluno_id()
         );
     }
 }
