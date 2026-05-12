@@ -1,13 +1,20 @@
-<<<<<<< HEAD
 # Sistema de Gestão Escolar (JDBC + DTOs + MySQL)
 ## Seguindo como base o conteúdo do Professor Vinícius Trindade 
 ## 🖥️ [Código Base](https://github.com/profviniciustrindade/lista-contatos/tree/main)
-=======
-# Sistema de Gestão Escolar (JDBC + DTOs + SQL)
-## 🖥️ [Código de Base](https://github.com/profviniciustrindade/lista-contatos/tree/main)
->>>>>>> f1487055b0ab09bdcf6c8e1bf3f9429ffac63d16
 
 Este projeto consiste em um sistema de gestão escolar construído em Java, utilizando JDBC para persistência de dados, o padrão DTO (Data Transfer Object) para transferência de dados entre as camadas, e banco de dados relacional.
+
+## Status do Desenvolvimento
+
+**✅ Funcionando Atualmente:**
+- Aluno
+- Aula
+- Turma
+
+**⏳ Restantes (Pendentes):**
+- Professor
+- Nota
+- Curso
 
 ## Estrutura do Banco de Dados
 
