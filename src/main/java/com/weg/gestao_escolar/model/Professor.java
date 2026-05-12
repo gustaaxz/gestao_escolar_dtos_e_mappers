@@ -4,6 +4,8 @@ public class Professor {
     private Long id;
     private String nome, email, disciplina;
 
+    public Professor(){}
+
     public Professor(String nome, String email, String disciplina) {
         this.nome = nome;
         this.email = email;

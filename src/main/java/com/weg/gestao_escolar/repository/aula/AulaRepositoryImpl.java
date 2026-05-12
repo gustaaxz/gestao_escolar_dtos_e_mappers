@@ -131,6 +131,7 @@ public class AulaRepositoryImpl implements AulaRepository {
         }
     }
 
+    @Override
     public boolean existePorId(Long id) throws SQLException{
         String query = """
                     SELECT COUNT(0) AS resultado

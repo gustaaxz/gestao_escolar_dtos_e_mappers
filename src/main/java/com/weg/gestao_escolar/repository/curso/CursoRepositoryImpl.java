@@ -62,6 +62,7 @@ public class CursoRepositoryImpl implements CursoRepository {
         throw new UnsupportedOperationException("Unimplemented method 'deletarCurso'");
     }
 
+    @Override
     public boolean existePorId(Long id) throws SQLException{
         String query = """
                     SELECT COUNT(0) AS resultado

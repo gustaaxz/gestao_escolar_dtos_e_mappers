@@ -4,6 +4,8 @@ public class Nota {
     private Long id, aluno_id, aula_id;
     private Double valor;
 
+    public Nota(){}
+
     public Nota(Long aluno_id, Long aula_id, Double valor) {
         this.aluno_id = aluno_id;
         this.aula_id = aula_id;

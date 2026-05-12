@@ -4,6 +4,8 @@ public class Curso {
     private Long id;
     private String nome, codigo;
 
+    public Curso(){}
+    
     public Curso(String nome, String codigo) {
         this.nome = nome;
         this.codigo = codigo;

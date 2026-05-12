@@ -4,6 +4,8 @@ public class Turma {
     private Long id, curso_id, professor_id;
     private String nome;
     
+    public Turma(){}
+
     public Turma(Long curso_id, Long professor_id, String nome) {
         this.curso_id = curso_id;
         this.professor_id = professor_id;

@@ -70,6 +70,7 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
         throw new UnsupportedOperationException("Unimplemented method 'deletarProfessor'");
     }
     
+    @Override
     public boolean existePorId(Long id) throws SQLException{
         String query = """
                     SELECT COUNT(0) AS resultado

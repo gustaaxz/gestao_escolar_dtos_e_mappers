@@ -1,4 +1,4 @@
-# Sistema de Gestão Escolar (JDBC + DTOs + SQL)
+# Sistema de Gestão Escolar (JDBC + DTOs + MySQL)
 ## Seguindo como base o conteúdo do Professor Vinícius Trindade 
 ## 🖥️ [Código Base](https://github.com/profviniciustrindade/lista-contatos/tree/main)
 

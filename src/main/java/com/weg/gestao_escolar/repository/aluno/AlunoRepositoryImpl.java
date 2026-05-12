@@ -137,6 +137,7 @@ public class AlunoRepositoryImpl implements AlunoRepository {
         }
     }
 
+    @Override
     public boolean existePorId(Long id) throws SQLException{
         String query = """
                     SELECT COUNT(0) AS resultado
