@@ -6,15 +6,14 @@ Este projeto consiste em um sistema de gestão escolar construído em Java, util
 
 ## Status do Desenvolvimento
 
-**✅ Funcionando Atualmente:**
-- Aluno
-- Aula
-- Turma
-
-**⏳ Restantes (Pendentes):**
-- Professor
-- Nota
-- Curso
+| Entidade | Status |
+| :--- | :--- |
+| **Aluno** | ✅ Concluído |
+| **Aula** | ✅ Concluído |
+| **Turma** | ✅ Concluído |
+| **Professor** | ⏳ Pendente |
+| **Nota** | ⏳ Pendente |
+| **Curso** | ⏳ Pendente |
 
 ## Estrutura do Banco de Dados
 
