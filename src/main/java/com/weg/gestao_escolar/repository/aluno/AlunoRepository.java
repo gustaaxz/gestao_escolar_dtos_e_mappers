@@ -11,4 +11,5 @@ public interface AlunoRepository {
     List<Aluno> buscarTodosAlunos() throws SQLException;
     void atualizarAluno(Aluno aluno) throws SQLException;
     void deletarAluno(Long id) throws SQLException;
+    boolean existePorId(Long id) throws SQLException;
 }

@@ -7,6 +7,8 @@ public class Aluno {
     private String nome, email, matricula;
     private Date data_nascimento;
 
+    public Aluno(){}
+
     public Aluno(String nome, String email, String matricula, Date data_nascimento) {
         this.nome = nome;
         this.email = email;

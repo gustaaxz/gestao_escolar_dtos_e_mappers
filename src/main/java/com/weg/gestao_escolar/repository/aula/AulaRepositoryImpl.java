@@ -1,6 +1,8 @@
 package com.weg.gestao_escolar.repository.aula;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,33 @@ import java.sql.ResultSet;
 
 @Repository
 public class AulaRepositoryImpl implements AulaRepository {
+    
+    @Override
+    public List<Aula> buscarTodasAulas() throws SQLException {
+        List<Aula> aulas = new ArrayList<>();
+        String query = """
+                SELECT id, turma_id, data_hora, assunto
+                FROM aula
+                """;
+        
+            try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)){
+                    ResultSet rs = stmt.executeQuery();
+
+                    while (rs.next()){
+                        Aula aula = new Aula(
+                            rs.getLong("id"),
+                            rs.getLong("turma_id"),
+                            (LocalDateTime) rs.getObject("data_hora"),
+                            rs.getString("assunto")
+                        );
+                        aulas.add(aula);
+                    }   
+                }
+            return aulas;
+    }
+    
+    @Override
     public Aula cadastrarAula(Aula aula) throws SQLException {
         String command = """
                 INSERT INTO aula
@@ -41,25 +70,65 @@ public class AulaRepositoryImpl implements AulaRepository {
 
     @Override
     public Aula buscarAula(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarAula'");
-    }
+        String query = """
+                SELECT turma_id, data_hora, assunto
+                FROM aula
+                WHERE id = ? 
+                """;    
+        
+                try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)){
+                    stmt.setLong(1, id);
 
-    @Override
-    public List<Aula> buscarTodasAulas() throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarTodasAulas'");
+                    ResultSet rs = stmt.executeQuery();
+
+                    if(rs.next()){
+                        Long turma_id = rs.getLong("turma_id");
+                        LocalDateTime data_hora = (LocalDateTime) rs.getObject("data_hora");
+                        String assunto = rs.getString("assunto");
+
+                        return new Aula(turma_id, data_hora, assunto);
+                    }
+                }
+            throw new RuntimeException("Erro ao buscar a aula especificada!");
     }
 
     @Override
     public void atualizarAula(Aula aula) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarAula'");
+        String command = """
+                UPDATE aula
+                SET turma_id = ?, data_hora = ?, assunto = ?
+                WHERE id = ?
+                """;
+        
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(command)){
+            stmt.setLong(1, aula.getTurma_id());
+            stmt.setObject(2, aula.getData_hora());
+            stmt.setString(3, aula.getAssunto());
+
+            int linhasAfetadas = stmt.executeUpdate();
+            if(linhasAfetadas == 0) {
+                throw new RuntimeException("Erro ao atualizar a aula especificada!");
+            }  
+        }
     }
 
     @Override
     public void deletarAula(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletarAula'");
+        String command = """
+                DELETE FROM aula
+                WHERE id = ?
+                """;
+        
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(command)){
+            stmt.setLong(1, id);
+
+            int linhasAfetadas = stmt.executeUpdate();
+            if(linhasAfetadas == 0) {
+                throw new RuntimeException("Erro ao atualizar a aula especificada!");
+            }  
+        }
     }
 }
