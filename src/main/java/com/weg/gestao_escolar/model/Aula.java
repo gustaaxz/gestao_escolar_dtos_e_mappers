@@ -7,6 +7,8 @@ public class Aula {
     private LocalDateTime data_hora;
     private String assunto;
 
+    public Aula(){}
+
     public Aula(Long turma_id, LocalDateTime data_hora, String assunto) {
         this.turma_id = turma_id;
         this.data_hora = data_hora;

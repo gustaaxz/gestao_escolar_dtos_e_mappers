@@ -10,7 +10,6 @@ import com.weg.gestao_escolar.dto.aluno.AlunoRespostaDTO;
 import com.weg.gestao_escolar.model.Aluno;
 import com.weg.gestao_escolar.service.AlunoService;
 
-
 @RestController
 @RequestMapping("/aluno")
 public class AlunoController {

@@ -1,9 +1,12 @@
 package com.weg.gestao_escolar.mapper;
 
+import org.springframework.stereotype.*;
+
 import com.weg.gestao_escolar.dto.turma.TurmaRequisicaoDTO;
 import com.weg.gestao_escolar.dto.turma.TurmaRespostaDTO;
 import com.weg.gestao_escolar.model.Turma;
 
+@Component
 public class TurmaMapper {
     public Turma paraEntidade(
             TurmaRequisicaoDTO requisicaoDTO

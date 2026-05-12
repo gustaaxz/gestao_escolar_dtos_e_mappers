@@ -56,6 +56,7 @@ public class AulaRepositoryImpl implements AulaRepository {
                 stmt.setLong(1, aula.getTurma_id());
                 stmt.setObject(2, aula.getData_hora());
                 stmt.setString(3, aula.getAssunto());
+                stmt.executeUpdate();
 
                 ResultSet rs = stmt.getGeneratedKeys();
 
@@ -71,7 +72,7 @@ public class AulaRepositoryImpl implements AulaRepository {
     @Override
     public Aula buscarAula(Long id) throws SQLException {
         String query = """
-                SELECT turma_id, data_hora, assunto
+                SELECT id, turma_id, data_hora, assunto
                 FROM aula
                 WHERE id = ? 
                 """;    
@@ -83,11 +84,12 @@ public class AulaRepositoryImpl implements AulaRepository {
                     ResultSet rs = stmt.executeQuery();
 
                     if(rs.next()){
+                        Long idBuscado = rs.getLong("id");
                         Long turma_id = rs.getLong("turma_id");
                         LocalDateTime data_hora = (LocalDateTime) rs.getObject("data_hora");
                         String assunto = rs.getString("assunto");
 
-                        return new Aula(turma_id, data_hora, assunto);
+                        return new Aula(idBuscado, turma_id, data_hora, assunto);
                     }
                 }
             throw new RuntimeException("Erro ao buscar a aula especificada!");
@@ -106,11 +108,8 @@ public class AulaRepositoryImpl implements AulaRepository {
             stmt.setLong(1, aula.getTurma_id());
             stmt.setObject(2, aula.getData_hora());
             stmt.setString(3, aula.getAssunto());
-
-            int linhasAfetadas = stmt.executeUpdate();
-            if(linhasAfetadas == 0) {
-                throw new RuntimeException("Erro ao atualizar a aula especificada!");
-            }  
+            stmt.setLong(4, aula.getId());
+            stmt.executeUpdate();
         }
     }
 
@@ -130,5 +129,30 @@ public class AulaRepositoryImpl implements AulaRepository {
                 throw new RuntimeException("Erro ao atualizar a aula especificada!");
             }  
         }
+    }
+
+    public boolean existePorId(Long id) throws SQLException{
+        String query = """
+                    SELECT COUNT(0) AS resultado
+                    FROM aula
+                    WHERE id = ?
+                    """;
+                
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                int resultado = rs.getInt("resultado");
+                if(resultado == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        throw new RuntimeException("Erro ao buscar se a aula existe!");
     }
 }

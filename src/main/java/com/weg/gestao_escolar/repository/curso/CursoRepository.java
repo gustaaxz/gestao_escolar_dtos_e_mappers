@@ -11,4 +11,5 @@ public interface CursoRepository {
     List<Curso> buscarTodosCursos() throws SQLException;
     void atualizarCurso(Curso curso) throws SQLException;
     void deletarCurso(Long id) throws SQLException;
+    boolean existePorId(Long id) throws SQLException;
 }

@@ -1,9 +1,12 @@
 package com.weg.gestao_escolar.mapper;
 
+import org.springframework.stereotype.*;
+
 import com.weg.gestao_escolar.dto.nota.NotaRequisicaoDTO;
 import com.weg.gestao_escolar.dto.nota.NotaRespostaDTO;
 import com.weg.gestao_escolar.model.Nota;
 
+@Component
 public class NotaMapper {
     public Nota paraEntidade(
             NotaRequisicaoDTO requisicaoDTO

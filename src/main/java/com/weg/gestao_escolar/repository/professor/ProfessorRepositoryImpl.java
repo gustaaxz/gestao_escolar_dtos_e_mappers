@@ -69,4 +69,29 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deletarProfessor'");
     }
+    
+    public boolean existePorId(Long id) throws SQLException{
+        String query = """
+                    SELECT COUNT(0) AS resultado
+                    FROM professor
+                    WHERE id = ?
+                    """;
+                
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                int resultado = rs.getInt("resultado");
+                if(resultado == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        throw new RuntimeException("Erro ao buscar se o professor existe!");
+    }
 }

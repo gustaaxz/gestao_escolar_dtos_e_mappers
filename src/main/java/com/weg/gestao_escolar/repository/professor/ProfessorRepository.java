@@ -11,4 +11,5 @@ public interface ProfessorRepository {
     List<Professor> buscarTodosProfessores() throws SQLException;
     void atualizarProfessor(Professor professor) throws SQLException;
     void deletarProfessor(Long id) throws SQLException;
+    boolean existePorId(Long id) throws SQLException;
 }

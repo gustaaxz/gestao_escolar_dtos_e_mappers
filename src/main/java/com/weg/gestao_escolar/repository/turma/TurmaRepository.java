@@ -11,4 +11,5 @@ public interface TurmaRepository {
     List<Turma> buscarTodasTurmas() throws SQLException;
     void atualizarTurma(Turma turma) throws SQLException;
     void deletarTurma(Long id) throws SQLException;
+    boolean existePorId(Long id) throws SQLException;
 }

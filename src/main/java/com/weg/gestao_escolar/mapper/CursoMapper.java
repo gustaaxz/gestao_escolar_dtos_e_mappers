@@ -1,5 +1,7 @@
 package com.weg.gestao_escolar.mapper;
 
+import org.springframework.stereotype.*;
+
 import com.weg.gestao_escolar.dto.curso.CursoRequisicaoDTO;
 import com.weg.gestao_escolar.dto.curso.CursoRespostaDTO;
 import com.weg.gestao_escolar.model.Curso;
@@ -8,6 +10,7 @@ import com.weg.gestao_escolar.model.Professor;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class CursoMapper {
         public Curso paraEntidade(
                         CursoRequisicaoDTO requisicaoDTO) {
@@ -32,4 +35,4 @@ public class CursoMapper {
                         nomesProfessores
                 );
         }
-}
+}

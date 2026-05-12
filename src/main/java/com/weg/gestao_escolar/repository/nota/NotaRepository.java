@@ -11,4 +11,5 @@ public interface NotaRepository {
     List<Nota> buscarTodasNotas() throws SQLException;
     void atualizarNota(Nota nota) throws SQLException;
     void deletarNota(Long id) throws SQLException;
+    boolean existePorId(Long id) throws SQLException;
 }
