@@ -10,7 +10,7 @@ Este projeto consiste em um sistema de gestão escolar construído em Java, util
 | **Aluno** | ✅ Concluído |
 | **Aula** | ✅ Concluído |
 | **Turma** | ✅ Concluído |
-| **Professor** | ⏳ Pendente |
+| **Professor** | ✅ Concluído |
 | **Nota** | ⏳ Pendente |
 | **Curso** | ⏳ Pendente |
 

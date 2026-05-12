@@ -1,13 +1,14 @@
 package com.weg.gestao_escolar.repository.professor;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.*;
 
-import java.sql.Connection;
 import com.weg.gestao_escolar.connection.ConnectionFactory;
 import com.weg.gestao_escolar.model.Professor;
 
@@ -27,6 +28,7 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
                 stmt.setString(1, professor.getNome());
                 stmt.setString(2, professor.getEmail());
                 stmt.setString(3, professor.getDisciplina());
+                stmt.executeUpdate();
 
                 ResultSet rs = stmt.getGeneratedKeys();
 
@@ -40,36 +42,88 @@ public class ProfessorRepositoryImpl implements ProfessorRepository {
     }
 
     @Override
-    public com.weg.gestao_escolar.controller.Professor cadastrarProfessor(
-            com.weg.gestao_escolar.controller.Professor professor) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cadastrarProfessor'");
+    public Professor buscarProfessor(Long id) throws SQLException {
+        String query = """
+                SELECT nome, email, disciplina
+                FROM professor
+                WHERE id = ?
+                """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setLong(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String disciplina = rs.getString("disciplina");
+
+                Professor professor = new Professor(nome, email, disciplina);
+                return professor;
+            }
+        }
+        throw new RuntimeException("Erro ao buscar o professor especificado!");
     }
 
     @Override
-    public com.weg.gestao_escolar.controller.Professor buscarProfessor(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarProfessor'");
+    public List<Professor> buscarTodosProfessores() throws SQLException {
+        List<Professor> professores = new ArrayList<>();
+        String query = """
+                SELECT id, nome, email, disciplina
+                FROM professor
+                """;
+            
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()){
+                Professor professor = new Professor(
+                    rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("disciplina")
+                );
+                professores.add(professor);
+            }
+        }
+        return professores;
     }
 
     @Override
-    public List<com.weg.gestao_escolar.controller.Professor> buscarTodosProfessores() throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarTodosProfessores'");
-    }
+    public Professor atualizarProfessor(Professor professor) throws SQLException {
+        String command = """
+                UPDATE professor
+                SET nome = ?, email = ?, disciplina = ?
+                WHERE id = ?
+                """;
 
-    @Override
-    public void atualizarProfessor(com.weg.gestao_escolar.controller.Professor professor) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarProfessor'");
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(command)){
+            stmt.setString(1, professor.getNome());
+            stmt.setString(2, professor.getEmail());
+            stmt.setString(3, professor.getDisciplina());
+            stmt.setLong(4, professor.getId());
+            stmt.executeUpdate();
+        }
+        return professor;
     }
 
     @Override
     public void deletarProfessor(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletarProfessor'");
+        String command = """
+                DELETE FROM professor
+                WHERE id = ?
+                """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(command)){
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        }
     }
-    
+
     @Override
     public boolean existePorId(Long id) throws SQLException{
         String query = """
