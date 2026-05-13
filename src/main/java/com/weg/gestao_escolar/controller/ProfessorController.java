@@ -1,4 +1,5 @@
 package com.weg.gestao_escolar.controller;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -6,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.weg.gestao_escolar.dto.professor.ProfessorRequisicaoDTO;
 import com.weg.gestao_escolar.dto.professor.ProfessorRespostaDTO;
-import com.weg.gestao_escolar.model.Professor;
 import com.weg.gestao_escolar.service.ProfessorService;
 
 @RestController
@@ -19,10 +19,9 @@ public class ProfessorController {
     }
 
     @PostMapping
-    public ProfessorRespostaDTO postAluno(@RequestBody ProfessorRequisicaoDTO professorRequisicaoDTO) {
+    public ProfessorRespostaDTO postProfessor(@RequestBody ProfessorRequisicaoDTO professorRequisicaoDTO) {
         try {
-            ProfessorRespostaDTO respostaDTO = professorService.cadastrarProfessor(professorRequisicaoDTO);
-            return respostaDTO;
+            return professorService.cadastrarProfessor(professorRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -30,10 +29,9 @@ public class ProfessorController {
     }
 
     @GetMapping
-    public List<Professor> getTodosProfessores() {
+    public List<ProfessorRespostaDTO> getTodosProfessores() {
         try {
-            List<Professor> professores = professorService.buscarTodosProfessores();
-            return professores;
+            return professorService.buscarTodosProfessores();
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -41,10 +39,9 @@ public class ProfessorController {
     }
 
     @GetMapping("/{id}")
-    public Professor getProfessorPorId(@PathVariable Long id) {
+    public ProfessorRespostaDTO getProfessorPorId(@PathVariable Long id) {
         try {
-            Professor professor = professorService.buscarProfessorPorId(id);
-            return professor;
+            return professorService.buscarProfessorPorId(id);
         }
         catch (SQLException | RuntimeException e){
             throw new RuntimeException(e.getMessage());
@@ -52,10 +49,9 @@ public class ProfessorController {
     }
 
     @PutMapping("/{id}")
-    public Professor putAtualizarAluno(@PathVariable Long id, @RequestBody Professor professor) {
+    public ProfessorRespostaDTO putAtualizarProfessor(@PathVariable Long id, @RequestBody ProfessorRequisicaoDTO professorRequisicaoDTO) {
         try {
-            professorService.atualizarProfessor(id, professor);
-            return professor;
+            return professorService.atualizarProfessor(id, professorRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e){
             throw new RuntimeException(e.getMessage());
@@ -63,7 +59,7 @@ public class ProfessorController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAlunoPorId(@PathVariable Long id) {
+    public void deleteProfessorPorId(@PathVariable Long id) {
         try {
             professorService.deletarProfessor(id);
         }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.weg.gestao_escolar.dto.turma.TurmaRequisicaoDTO;
 import com.weg.gestao_escolar.dto.turma.TurmaRespostaDTO;
-import com.weg.gestao_escolar.model.Turma;
 import com.weg.gestao_escolar.service.TurmaService;
 
 @RestController
@@ -22,8 +21,7 @@ public class TurmaController {
     @PostMapping
     public TurmaRespostaDTO cadastrarTurma(@RequestBody TurmaRequisicaoDTO turmaRequisicaoDTO) {
         try {
-            TurmaRespostaDTO respostaDTO = turmaService.cadastrarTurma(turmaRequisicaoDTO);
-            return respostaDTO;
+            return turmaService.cadastrarTurma(turmaRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -31,10 +29,9 @@ public class TurmaController {
     }
 
     @GetMapping
-    public List<Turma> buscarTodasTurmas() {
+    public List<TurmaRespostaDTO> buscarTodasTurmas() {
         try {
-            List<Turma> turmas = turmaService.buscarTodasTurmas();
-            return turmas;
+            return turmaService.buscarTodasTurmas();
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -42,10 +39,9 @@ public class TurmaController {
     }
 
     @GetMapping("/{id}")
-    public Turma buscarTurmaPorId(@PathVariable Long id) {
+    public TurmaRespostaDTO buscarTurmaPorId(@PathVariable Long id) {
         try {
-            Turma turma = turmaService.buscarTurmaPorId(id);
-            return turma;
+            return turmaService.buscarTurmaPorId(id);
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -53,10 +49,9 @@ public class TurmaController {
     }
 
     @PutMapping("/{id}")
-    public Turma atualizarTurma(@RequestBody Turma turma, @PathVariable Long id) {
+    public TurmaRespostaDTO atualizarTurma(@PathVariable Long id, @RequestBody TurmaRequisicaoDTO turmaRequisicaoDTO) {
         try {
-            turmaService.atualizarTurma(id, turma);
-            return turma;
+            return turmaService.atualizarTurma(id, turmaRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());

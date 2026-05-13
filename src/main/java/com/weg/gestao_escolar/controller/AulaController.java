@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.weg.gestao_escolar.dto.aula.AulaRequisicaoDTO;
 import com.weg.gestao_escolar.dto.aula.AulaRespostaDTO;
-import com.weg.gestao_escolar.model.Aula;
 import com.weg.gestao_escolar.service.AulaService;
 
 @RestController
@@ -22,8 +21,7 @@ public class AulaController {
     @PostMapping
     public AulaRespostaDTO postAula(@RequestBody AulaRequisicaoDTO aulaRequisicaoDTO) {
         try {
-            AulaRespostaDTO respostaDTO = aulaService.cadastrarAula(aulaRequisicaoDTO);
-            return respostaDTO;
+            return aulaService.cadastrarAula(aulaRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -31,10 +29,9 @@ public class AulaController {
     }
 
     @GetMapping
-    public List<Aula> getTodasAulas() {
+    public List<AulaRespostaDTO> getTodasAulas() {
         try {
-            List<Aula> aulas = aulaService.buscarTodasAulas();
-            return aulas;
+            return aulaService.buscarTodasAulas();
         }
         catch (SQLException | RuntimeException e) {
             throw new RuntimeException(e.getMessage());
@@ -42,10 +39,9 @@ public class AulaController {
     }
 
     @GetMapping("/{id}")
-    public Aula getAlunoPorId(@PathVariable Long id) {
+    public AulaRespostaDTO getAulaPorId(@PathVariable Long id) {
         try {
-            Aula aula = aulaService.buscarAulaPorId(id);
-            return aula;
+            return aulaService.buscarAulaPorId(id);
         }
         catch (SQLException | RuntimeException e){
             throw new RuntimeException(e.getMessage());
@@ -53,10 +49,9 @@ public class AulaController {
     }
 
     @PutMapping("/{id}")
-    public Aula putAtualizarAula(@PathVariable Long id, @RequestBody Aula aula) {
+    public AulaRespostaDTO putAtualizarAula(@PathVariable Long id, @RequestBody AulaRequisicaoDTO aulaRequisicaoDTO) {
         try {
-            aulaService.atualizarAula(id, aula);
-            return aula;
+            return aulaService.atualizarAula(id, aulaRequisicaoDTO);
         }
         catch (SQLException | RuntimeException e){
             throw new RuntimeException(e.getMessage());

@@ -27,24 +27,25 @@ public class AulaService {
         return aulaMapper.paraRespostaDTO(aula);
     }
 
-    public List<Aula> buscarTodasAulas() throws SQLException {
+    public List<AulaRespostaDTO> buscarTodasAulas() throws SQLException {
         List<Aula> aulas = aulaRepository.buscarTodasAulas();
-        return aulas;
+        return aulas.stream().map(aulaMapper::paraRespostaDTO).toList();
     }
 
-    public Aula buscarAulaPorId(Long id) throws SQLException {
+    public AulaRespostaDTO buscarAulaPorId(Long id) throws SQLException {
         Aula aula = aulaRepository.buscarAula(id);
-        return aula;
+        return aulaMapper.paraRespostaDTO(aula);
     }
 
-    public Aula atualizarAula(Long id, Aula aula) throws SQLException {
+    public AulaRespostaDTO atualizarAula(Long id, AulaRequisicaoDTO aulaRequisicaoDTO) throws SQLException {
         if(!aulaRepository.existePorId(id)) {
             throw new RuntimeException("Aula não encontrada!");
         }
 
+        Aula aula = aulaMapper.paraEntidade(aulaRequisicaoDTO);
         aula.setId(id);
         aulaRepository.atualizarAula(aula);
-        return aula;
+        return aulaMapper.paraRespostaDTO(aula);
     }
 
     public void deletarAula(Long id) throws SQLException {
