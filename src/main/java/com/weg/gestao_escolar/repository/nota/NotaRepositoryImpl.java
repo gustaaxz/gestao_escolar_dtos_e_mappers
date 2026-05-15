@@ -41,8 +41,27 @@ public class NotaRepositoryImpl implements NotaRepository {
 
     @Override
     public Nota buscarNota(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarNota'");
+        String query = """
+                SELECT aluno_id, aula_id, valor
+                FROM nota
+                WHERE id = ?
+                """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+              stmt.setLong(1, id);
+              
+              ResultSet rs = stmt.executeQuery();
+
+              if(rs.next()){
+                Long aluno_id = rs.getLong("aluno_id");
+                Long aula_id = rs.getLong("aula_id");
+                Double valor = rs.getDouble("valor");
+
+                return new Nota(id, aluno_id, aula_id, valor);
+            }
+        }
+        throw new RuntimeException("Erro ao buscar a nota especificada!");
     }
 
     @Override
