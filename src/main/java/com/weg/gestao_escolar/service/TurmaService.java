@@ -27,24 +27,25 @@ public class TurmaService {
         return turmaMapper.paraRespostaDTO(turma);
     }
 
-    public List<Turma> buscarTodasTurmas() throws SQLException {
+    public List<TurmaRespostaDTO> buscarTodasTurmas() throws SQLException {
         List<Turma> turmas = turmaRepository.buscarTodasTurmas();
-        return turmas;
+        return turmas.stream().map(turmaMapper::paraRespostaDTO).toList();
     }
 
-    public Turma buscarTurmaPorId(Long id) throws SQLException {
+    public TurmaRespostaDTO buscarTurmaPorId(Long id) throws SQLException {
         Turma turma = turmaRepository.buscarTurma(id);
-        return turma;
+        return turmaMapper.paraRespostaDTO(turma);
     }
 
-    public Turma atualizarTurma(Long id, Turma turma) throws SQLException {
+    public TurmaRespostaDTO atualizarTurma(Long id, TurmaRequisicaoDTO turmaRequisicaoDTO) throws SQLException {
         if(!turmaRepository.existePorId(id)){
             throw new RuntimeException("Turma não encontrada!");
         }
 
+        Turma turma = turmaMapper.paraEntidade(turmaRequisicaoDTO);
         turma.setId(id);
         turmaRepository.atualizarTurma(turma);
-        return turma;
+        return turmaMapper.paraRespostaDTO(turma);
     }
 
     public void deletarTurma(Long id) throws SQLException {

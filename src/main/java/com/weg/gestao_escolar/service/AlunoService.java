@@ -27,24 +27,27 @@ public class AlunoService {
         return alunoMapper.paraRespostaDTO(aluno);
     }
 
-    public List<Aluno> buscarTodosAlunos() throws SQLException {
+    public List<AlunoRespostaDTO> buscarTodosAlunos() throws SQLException {
         List<Aluno> alunos = alunoRepository.buscarTodosAlunos();
-        return alunos;
+        return alunos.stream()
+            .map(alunoMapper::paraRespostaDTO)
+            .toList();
     }
 
-    public Aluno buscarAlunoPorId(Long id) throws SQLException {
+    public AlunoRespostaDTO buscarAlunoPorId(Long id) throws SQLException {
         Aluno aluno = alunoRepository.buscarAluno(id);
-        return aluno;
+        return alunoMapper.paraRespostaDTO(aluno);
     }
 
-    public Aluno atualizarAluno(Long id, Aluno aluno) throws SQLException {
+    public AlunoRespostaDTO atualizarAluno(Long id, AlunoRequisicaoDTO alunoRequisicaoDTO) throws SQLException {
         if(!alunoRepository.existePorId(id)) {
             throw new RuntimeException("Aluno não encontrado!");
         }
 
+        Aluno aluno = alunoMapper.paraEntidade(alunoRequisicaoDTO);
         aluno.setId(id);
         alunoRepository.atualizarAluno(aluno);
-        return aluno;
+        return alunoMapper.paraRespostaDTO(aluno);
     }
 
     public void deletarAluno(Long id) throws SQLException {

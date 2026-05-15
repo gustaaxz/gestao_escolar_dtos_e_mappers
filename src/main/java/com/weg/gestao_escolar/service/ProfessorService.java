@@ -27,29 +27,30 @@ public class ProfessorService {
         return professorMapper.paraRespostaDTO(professor);
     }
 
-    public List<Professor> buscarTodosProfessores() throws SQLException {
+    public List<ProfessorRespostaDTO> buscarTodosProfessores() throws SQLException {
         List<Professor> professores = professorRepository.buscarTodosProfessores();
-        return professores;
+        return professores.stream().map(professorMapper::paraRespostaDTO).toList();
     }
 
-    public Professor buscarProfessorPorId(Long id) throws SQLException {
+    public ProfessorRespostaDTO buscarProfessorPorId(Long id) throws SQLException {
         Professor professor = professorRepository.buscarProfessor(id);
-        return professor;
+        return professorMapper.paraRespostaDTO(professor);
     }
 
-    public Professor atualizarProfessor(Long id, Professor professor) throws SQLException {
+    public ProfessorRespostaDTO atualizarProfessor(Long id, ProfessorRequisicaoDTO professorRequisicaoDTO) throws SQLException {
         if(!professorRepository.existePorId(id)) {
-            throw new RuntimeException("Aluno não encontrado!");
+            throw new RuntimeException("Professor não encontrado!");
         }
 
+        Professor professor = professorMapper.paraEntidade(professorRequisicaoDTO);
         professor.setId(id);
         professorRepository.atualizarProfessor(professor);
-        return professor;
+        return professorMapper.paraRespostaDTO(professor);
     }
 
     public void deletarProfessor(Long id) throws SQLException {
         if(!professorRepository.existePorId(id)) {
-            throw new RuntimeException("Aluno não encontrado!");
+            throw new RuntimeException("Professor não encontrado!");
         }
 
         professorRepository.deletarProfessor(id);

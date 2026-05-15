@@ -89,7 +89,8 @@ public class AulaRepositoryImpl implements AulaRepository {
                         LocalDateTime data_hora = (LocalDateTime) rs.getObject("data_hora");
                         String assunto = rs.getString("assunto");
 
-                        return new Aula(idBuscado, turma_id, data_hora, assunto);
+                        Aula aula = new Aula(idBuscado, turma_id, data_hora, assunto);
+                        return aula;
                     }
                 }
             throw new RuntimeException("Erro ao buscar a aula especificada!");
